@@ -10,7 +10,7 @@ cbuf_t *cbuf_create(unsigned int size)
 
     cbuf->size = size;
     cbuf->index = 0;
-    cbuf->buf = (char**)malloc(size);
+    cbuf->buf = malloc(size * sizeof(char*));
     if (cbuf->buf == NULL) {
         fprintf(stderr, "Error: Failed to allocate memory.\n");
         return NULL;
@@ -27,11 +27,9 @@ void cbuf_put(cbuf_t *cbuf, char *line)
 
 char *cbuf_get(cbuf_t *cbuf)
 {
-    char *line = cbuf->buf[0];
-
-    for (unsigned i = 1; i < cbuf->size; i++) {
-        cbuf->buf[i - 1] = cbuf->buf[i];
-    }
+    printf("cbuf->index: %d\n", cbuf->index);
+    char *line = cbuf->buf[cbuf->index];
+    cbuf->index = (cbuf->index + 1) % cbuf->size;
 
     return line;
 }
