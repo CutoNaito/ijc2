@@ -70,10 +70,11 @@ int main(int argc, char **argv)
     
     while (fgets(buffer, MAX_LINE, fp) != NULL) {
         cbuf_put(cbuf, buffer);
+        printf("%s", cbuf->buf[cbuf->index]);
     }
 
     for (unsigned long i = 0; i < cbuf->size; i++) {
-        cbuf_get(cbuf);
+        printf("%s", cbuf_get(cbuf));
     }
 
     cbuf_free(cbuf);
