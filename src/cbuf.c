@@ -22,13 +22,19 @@ cbuf_t *cbuf_create(unsigned int size)
 void cbuf_put(cbuf_t *cbuf, char *line)
 {
     cbuf->buf[cbuf->index] = line;
+
+    if (cbuf->buf[cbuf->index][strlen(cbuf->buf[cbuf->index]) - 1] != '\0') {
+        strcat(cbuf->buf[cbuf->index], "\0");
+    }
+
     cbuf->index = (cbuf->index + 1) % cbuf->size;
 }
 
 char *cbuf_get(cbuf_t *cbuf)
 {
-    printf("cbuf->index: %d\n", cbuf->index);
     char *line = cbuf->buf[cbuf->index];
+
+    cbuf->buf[cbuf->index] = NULL;
     cbuf->index = (cbuf->index + 1) % cbuf->size;
 
     return line;

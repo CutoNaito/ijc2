@@ -67,13 +67,13 @@ int main(int argc, char **argv)
 
     cbuf_t *cbuf = cbuf_create(lines_to_read);
     char buffer[MAX_LINE];
-
+    
     while (fgets(buffer, MAX_LINE, fp) != NULL) {
         cbuf_put(cbuf, buffer);
     }
 
     for (unsigned long i = 0; i < cbuf->size; i++) {
-        printf("%s", cbuf_get(cbuf));
+        cbuf_get(cbuf);
     }
 
     cbuf_free(cbuf);
