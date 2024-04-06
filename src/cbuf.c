@@ -21,7 +21,17 @@ cbuf_t *cbuf_create(unsigned int size)
 
 void cbuf_put(cbuf_t *cbuf, char *line)
 {
-    cbuf->buf[cbuf->index] = line;
+    if (cbuf->buf[cbuf->index] != NULL) {
+        free(cbuf->buf[cbuf->index]);
+    }
+
+    cbuf->buf[cbuf->index] = malloc(strlen(line) + 1);
+    if (cbuf->buf[cbuf->index] == NULL) {
+        fprintf(stderr, "Error: Failed to allocate memory.\n");
+        return;
+    }
+
+    strcpy(cbuf->buf[cbuf->index], line);
 
     if (cbuf->buf[cbuf->index][strlen(cbuf->buf[cbuf->index]) - 1] != '\0') {
         strcat(cbuf->buf[cbuf->index], "\0");
@@ -42,6 +52,12 @@ char *cbuf_get(cbuf_t *cbuf)
 
 void cbuf_free(cbuf_t *cbuf)
 {
+    for (unsigned int i = 0; i < cbuf->size; i++) {
+        if (cbuf->buf[i] != NULL) {
+            free(cbuf->buf[i]);
+        }
+    }
+
     if (cbuf->buf != NULL) {
         free(cbuf->buf);
     }

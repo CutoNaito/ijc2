@@ -1,1 +1,3 @@
-bin/*
+bin/tail
+bin/wordcount
+bin/wordcount-dynamic

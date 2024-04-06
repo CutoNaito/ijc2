@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 
     cbuf_t *cbuf = cbuf_create(lines_to_read);
     char buffer[MAX_LINE];
-    
+
     while (fgets(buffer, MAX_LINE, fp) != NULL) {
         cbuf_put(cbuf, buffer);
     }

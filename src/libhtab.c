@@ -74,17 +74,19 @@ htab_pair_t *htab_lookup_add(htab_t *t, htab_key_t key)
         return NULL;
     }
 
-    item->pair.key = key;
-    item->pair.value = 0;
+    item->pair.key = (const char *)malloc(sizeof(char) * (strlen(key) + 1));
+    if (item->pair.key == NULL) {
+        free(item);
+        return NULL;
+    }
+
+    strcpy((char *)item->pair.key, key);
+
     item->next = t->arr[index];
     t->arr[index] = item;
     t->size++;
 
     htab_pair_t *pair = &item->pair;
-
-    if (item != NULL) {
-        free(item);
-    }
 
     return pair;
 }
@@ -134,7 +136,10 @@ void htab_clear(htab_t *t)
 
         while (item != NULL) {
             htab_item_t *next = item->next;
+
+            free((char *)item->pair.key);
             free(item);
+
             item = next;
         }
 
