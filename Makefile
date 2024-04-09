@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic -std=c11 -g
-LDFLAGS = -lm
+CFLAGS = -Wall -Werror -Wextra -pedantic -std=c11 -g -fsanitize=address
+LDFLAGS = -lm -fsanitize=address
 
 TAIL_TARGET = ./bin/tail
 TAIL_SRC = ./src/tail.c ./src/cbuf.c
@@ -21,7 +21,7 @@ tail:
 wordcount:
 	$(CC) -c -fPIC $(CFLAGS) $(LIB_SRC) -o ./lib/libhtab.o
 	ar rcs $(LIB_TARGET_STATIC) ./lib/libhtab.o
-	$(CC) $(CFLAGS) -o $(WORDCOUNT_STATIC_TARGET) $(WORDCOUNT_SRC) -static $(LIB_TARGET_STATIC) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $(WORDCOUNT_STATIC_TARGET) $(WORDCOUNT_SRC) $(LIB_TARGET_STATIC) $(LDFLAGS)
 
 wordcount-dynamic:
 	$(CC) -c -fPIC $(CFLAGS) $(LIB_SRC) -o ./lib/libhtab.o

@@ -62,7 +62,7 @@ htab_pair_t *htab_lookup_add(htab_t *t, htab_key_t key)
     htab_item_t *item = t->arr[index];
 
     while (item != NULL) {
-        if (item->pair.key == key) {
+        if (strcmp(item->pair.key, key) == 0) {
             return &item->pair;
         }
 
