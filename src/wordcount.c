@@ -13,6 +13,7 @@ int main(void)
     char buffer[100];
 
     while (fgets(buffer, 100, stdin) != NULL) {
+        buffer[strlen(buffer) - 1] = '\0';
         htab_pair_t *pair = htab_lookup_add(t, buffer);
         pair->value++;
     }
