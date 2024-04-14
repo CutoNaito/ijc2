@@ -59,8 +59,5 @@ wordcount-dynamic: htab_init.o htab_size.o htab_bucket_count.o htab_find.o htab_
 	$(CC) -shared -fPIC ./lib/htab*.o -o $(LIB_TARGET_SHARED)
 	$(CC) $(CFLAGS) -o $(WORDCOUNT_DYNAMIC_TARGET) $(WORDCOUNT_SRC) $(LIB_TARGET_SHARED) $(LDFLAGS)
 
-run: 
-	./bin/tail
-
 clean:
 	rm ./bin/tail ./bin/wordcount ./bin/wordcount-dynamic ./lib/libhtab.a ./lib/libhtab.so ./lib/htab*.o
