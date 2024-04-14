@@ -1,3 +1,8 @@
+// htab_find.c
+// Řešení IJC-DU2, příklad 2), 14.4.2024
+// Autor: Matěj Šturma, FIT
+// Přeloženo: gcc 13.2.1
+
 #include <stdlib.h>
 #include "htab.h"
 #include "htab_def.h"

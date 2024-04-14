@@ -1,3 +1,8 @@
+// cbuf.c
+// Řešení IJC-DU2, příklad 1), 14.4.2024
+// Autor: Matěj Šturma, FIT
+// Přeloženo: gcc 13.2.1
+
 #include "cbuf.h"
 
 cbuf_t *cbuf_create(unsigned int size)

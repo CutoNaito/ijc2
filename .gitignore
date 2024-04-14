@@ -1,3 +1,4 @@
 bin/tail
 bin/wordcount
 bin/wordcount-dynamic
+lib/htab*.o

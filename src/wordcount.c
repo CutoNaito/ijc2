@@ -1,3 +1,8 @@
+// wordcount.c
+// Řešení IJC-DU2, příklad 2), 14.4.2024
+// Autor: Matěj Šturma, FIT
+// Přeloženo: gcc 13.2.1
+
 #include <stdio.h>
 #include "htab.h"
 
